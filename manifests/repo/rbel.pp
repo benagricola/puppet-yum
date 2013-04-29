@@ -4,10 +4,9 @@
 #
 class yum::repo::rbel {
 
-  $osver = split($::operatingsystemrelease, '[.]')
   yum::managed_yumrepo { 'rbel':
     descr          => 'RBEL Repo',
-    baseurl        => "http://rbel.frameos.org/stable/el${osver}[0]/${architecture}",
+    baseurl        => "http://rbel.frameos.org/stable/el${::operatingsystemmajrelease}/${architecture}",
     enabled        => 1,
     gpgcheck       => 0,
     failovermethod => 'priority',

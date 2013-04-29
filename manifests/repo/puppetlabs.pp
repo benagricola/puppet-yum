@@ -3,9 +3,8 @@
 # This class installs the puppetlabs repo
 #
 class yum::repo::puppetlabs {
-  $osver = split($::operatingsystemrelease, '[.]')
   $release = $::operatingsystem ? {
-    /(?i:Centos|RedHat)/ => $osver[0],
+    /(?i:Centos|RedHat)/ => $::operatingsystemmajrelease,
     default              => '6',
   }
 

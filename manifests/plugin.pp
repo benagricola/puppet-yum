@@ -26,7 +26,7 @@ define yum::plugin (
 
   $ensure = bool2ensure( $enable )
 
-  $yum_plugins_prefix = $yum::osver[0] ? {
+  $yum_plugins_prefix = $::operatingsystemmajrelease ? {
     5       => 'yum',
     6       => 'yum-plugin',
     default => 'yum-plugin',

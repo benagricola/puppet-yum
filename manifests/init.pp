@@ -173,8 +173,6 @@ class yum (
   $bool_debug=any2bool($debug)
   $bool_audit_only=any2bool($audit_only)
 
-  $osver = split($::operatingsystemrelease, '[.]')
-
   $manage_service_enable = $yum::bool_disableboot ? {
     true    => false,
     default => $yum::bool_disable ? {

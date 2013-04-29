@@ -7,7 +7,7 @@ class yum::prerequisites {
 
   file { 'rpm_gpg':
     path   => '/etc/pki/rpm-gpg/',
-    source => "puppet:///modules/yum/${operatingsystem}.${yum::osver[0]}/rpm-gpg/",
+    source => "puppet:///modules/yum/${operatingsystem}.${::operatingsystemmajrelease}/rpm-gpg/",
     recurse => true,
 #    purge   => $yum::bool_clean_repos ? {
 #      true  => true,
@@ -19,4 +19,6 @@ class yum::prerequisites {
     group   => 0,
   }
 
+  # Order yumrepos before installing packages
+  Yumrepo <| |> -> Package <| |>
 }
